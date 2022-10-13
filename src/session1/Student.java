@@ -1,7 +1,7 @@
 package session1;
 
 public class Student {
-    String name;
+    public String name;
     int age = 20;
 
     public void showInfo(){
