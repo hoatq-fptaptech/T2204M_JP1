@@ -71,11 +71,15 @@ public class PhoneBook extends Phone{
 //                }
 //            }
 //        }
-        Collections.sort(getPhoneList(), new Comparator<PhoneNumber>() {
-            @Override
-            public int compare(PhoneNumber o1, PhoneNumber o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+//        Collections.sort(getPhoneList(), new Comparator<PhoneNumber>() {
+//            @Override
+//            public int compare(PhoneNumber o1, PhoneNumber o2) {
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+        Comparator<PhoneNumber> cp = (o1,o2)->{
+            return o1.getName().compareTo(o2.getName());
+        };
+        Collections.sort(getPhoneList(), cp);
     }
 }
