@@ -12,4 +12,10 @@ public class CreateController {
         Scene sc = new Scene(listScene,800,600);
         Main.rootStage.setScene(sc);
     }
+
+    public void submit(ActionEvent event) throws Exception{
+        // them sv
+        // xong
+        backToList(null);
+    }
 }
