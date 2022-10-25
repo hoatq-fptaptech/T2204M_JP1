@@ -34,7 +34,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="300.0" layoutY="23.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Sort by Mark">
+      <Button onAction="#goToContact" layoutX="300.0" layoutY="23.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Sort by Mark">
          <font>
             <Font size="15.0" />
          </font>
