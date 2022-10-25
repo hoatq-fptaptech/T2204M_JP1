@@ -8,7 +8,7 @@
 
 <Pane fx:controller="javafx.list.ListController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="lv" layoutX="57.0" layoutY="76.0" prefHeight="466.0" prefWidth="682.0" />
+      <ListView onMouseClicked="#edit" fx:id="lv" layoutX="57.0" layoutY="76.0" prefHeight="466.0" prefWidth="682.0" />
       <Button layoutX="57.0" layoutY="34.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="140.0" text="Sort">
          <font>
             <Font size="15.0" />
@@ -19,7 +19,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button layoutX="57.0" layoutY="552.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Edit">
+      <Button onAction="#edit" layoutX="57.0" layoutY="552.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Edit">
          <font>
             <Font size="15.0" />
          </font>

@@ -4,6 +4,7 @@ import javafx.Main;
 import javafx.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.create.CreateController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,5 +20,10 @@ public class ListController {
         Parent createForm = FXMLLoader.load(getClass().getResource("../create/create.fxml"));
         Scene sc = new Scene(createForm,800,600);
         Main.rootStage.setScene(sc);
+    }
+
+    public void edit() {
+        CreateController.editedStudent = lv.getSelectionModel().getSelectedItem();
+
     }
 }
