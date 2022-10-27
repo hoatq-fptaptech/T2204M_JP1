@@ -1,4 +1,4 @@
-package javafx.create;
+package javafx.edit;
 
 import javafx.Main;
 import javafx.Student;
@@ -17,19 +17,25 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreateController implements Initializable {
+public class EditController implements Initializable {
     public TextField txtName;
     public TextField txtEmail;
     public TextField txtMark;
     public ComboBox<String> cbGender;
 
+    public static Student editedStudent;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        txtName.setText(editedStudent.getName());
+        txtEmail.setText(editedStudent.getEmail());
+        txtMark.setText(editedStudent.getMark().toString());
         ObservableList<String> genders = FXCollections.observableArrayList();
         genders.add("Nam");
         genders.add("Nữ");
         genders.add("Khác");
         cbGender.setItems(genders);
+        cbGender.setValue(editedStudent.getGender());
     }
 
     public void backToList(ActionEvent event) throws Exception{
@@ -38,14 +44,16 @@ public class CreateController implements Initializable {
         Main.rootStage.setScene(sc);
     }
 
-    public void submit(ActionEvent event){
+    public void submit(ActionEvent actionEvent) {
         try {
             Integer m = Integer.parseInt(txtMark.getText());
             if(m<0 || m > 10)
                 throw new Exception("Điểm thi không hợp lệ");
             // them sv
-            Student s=  new Student(txtName.getText(),txtEmail.getText(),m,cbGender.getValue());
-            ListController.ls.add(s);
+            editedStudent.setName(txtName.getText());
+            editedStudent.setEmail(txtEmail.getText());
+            editedStudent.setMark(m);
+            editedStudent.setGender(cbGender.getValue());
             // xong
             backToList(null);
         }catch (Exception e){
@@ -54,6 +62,5 @@ public class CreateController implements Initializable {
             alert.setHeaderText(e.getMessage());
             alert.show();
         }
-
     }
 }

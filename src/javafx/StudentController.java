@@ -32,7 +32,7 @@ public class StudentController {
             Integer mark = Integer.parseInt(txtMark.getText());
             if(mark < 0 || mark > 10)
                 throw new Exception("Vui lòng nhập điểm trong khoảng 0 -> 10");
-            ls.add(new Student(name,email,mark));
+            //ls.add(new Student(name,email,mark));
             lvStudents.setItems(ls);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
