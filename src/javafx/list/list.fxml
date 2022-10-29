@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.list.ListController">
    <children>
-      <Button layoutX="57.0" layoutY="34.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="140.0" text="Sort">
+      <Button onAction="#search" layoutX="302.0" layoutY="34.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" text="Search">
          <font>
             <Font size="15.0" />
          </font>
@@ -26,5 +26,6 @@
             <TableColumn fx:id="cAction" prefWidth="108.0" text="Action" />
         </columns>
       </TableView>
+      <TextField fx:id="txtSearch" layoutX="34.0" layoutY="34.0" prefHeight="29.0" prefWidth="270.0" />
    </children>
 </Pane>
