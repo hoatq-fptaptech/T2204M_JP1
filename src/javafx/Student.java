@@ -1,16 +1,39 @@
 package javafx;
 
+import javafx.edit.EditController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+
 public class Student {
     private String name;
     private String email;
     private Integer mark;
     private String gender;
 
+    private Button edit;
+
     public Student(String name, String email, Integer mark,String gender) {
         this.name = name;
         this.email = email;
         this.mark = mark;
         this.gender = gender;
+        this.edit = new Button("Edit");
+        this.edit.setOnAction(event -> {
+            try {
+                EditController.editedStudent = this;
+                Parent editForm = FXMLLoader.load(getClass().getResource("edit/edit.fxml"));
+                Scene sc = new Scene(editForm,800,600);
+                Main.rootStage.setScene(sc);
+            }catch (Exception e){
+
+            }
+        });
+    }
+
+    public Button getEdit() {
+        return edit;
     }
 
     public String getGender() {
