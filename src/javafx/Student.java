@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class Student {
+    private Integer id;
     private String name;
     private String email;
     private Integer mark;
@@ -14,7 +15,8 @@ public class Student {
 
     private Button edit;
 
-    public Student(String name, String email, Integer mark,String gender) {
+    public Student(Integer id, String name, String email, Integer mark, String gender) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.mark = mark;
@@ -71,5 +73,9 @@ public class Student {
     @Override
     public String toString() {
         return this.getName()+"\n"+this.getMark();
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

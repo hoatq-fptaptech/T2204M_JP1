@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.sql.*;
 public class CreateController implements Initializable {
     public TextField txtName;
     public TextField txtEmail;
@@ -44,8 +44,19 @@ public class CreateController implements Initializable {
             if(m<0 || m > 10)
                 throw new Exception("Điểm thi không hợp lệ");
             // them sv
-            Student s=  new Student(txtName.getText(),txtEmail.getText(),m,cbGender.getValue());
-            ListController.ls.add(s);
+            Student s=  new Student(null, txtName.getText(),txtEmail.getText(),m,cbGender.getValue());
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(ListController.connectionString,ListController.user,ListController.pwd);
+            Statement stt = conn.createStatement();
+            String sql_txt = "insert into students(name,email,mark,gender) values('"
+                    +txtName.getText()+"','"
+                    +txtEmail.getText()+"',"
+                    +m
+                    +",'"+cbGender.getValue()+"')"
+                    ;
+            stt.executeUpdate(sql_txt);
+
             // xong
             backToList(null);
         }catch (Exception e){

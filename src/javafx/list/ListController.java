@@ -4,8 +4,6 @@ import javafx.Main;
 import javafx.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.create.CreateController;
-import javafx.edit.EditController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,13 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import java.sql.*;
 
 public class ListController implements Initializable {
-    public static ObservableList<Student> ls = FXCollections.observableArrayList();
+    public ObservableList<Student> ls = FXCollections.observableArrayList();
 
     public TableView<Student> tbStudents;
     public TableColumn<Student,String> cName;
@@ -31,6 +28,10 @@ public class ListController implements Initializable {
     public TableColumn<Student, Button> cAction;
     public TextField txtSearch;
 
+    public final static String connectionString = "jdbc:mysql://localhost:3306/t2204m";
+    public final static String user = "root";
+    public final static String pwd = "root"; // xampp: ""   mamp: "root"
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -39,10 +40,24 @@ public class ListController implements Initializable {
         cGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
 
-        if(ls.size() == 0){
-            ls.add(new Student("Nguyễn Hoàng Long","longnh@gmail.com",2,"Nam"));
-            ls.add(new Student("Phan Hoàng Anh","anhph@gmail.com",4,"Nam"));
-            ls.add(new Student("Vũ Thế Anh","anhvt@gmail.com",4,"Nam"));
+         // lay data tu database cho vao list
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(connectionString,user,pwd);
+            Statement stt = conn.createStatement();
+            String sql_txt = "select * from students";
+            ResultSet rs = stt.executeQuery(sql_txt);
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                int mark = rs.getInt("mark");
+                String gender = rs.getString("gender");
+                Student s = new Student(id,name,email,mark,gender);
+                ls.add(s);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
         tbStudents.setItems(ls);
     }
